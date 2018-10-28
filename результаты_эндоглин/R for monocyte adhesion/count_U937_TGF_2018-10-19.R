@@ -80,8 +80,8 @@ ggplot(mydata, aes(x = mab, y = Predict)) +
         ylab("Число клеток U-937")
 
 
-# Удобный пакет, который корректно считает CI, но все совпадает с тем, что делаем через predict. Множитель везде 1.96, так что OK
-library(emmeans)
+# Удобный пакет, который корректно считает CI, но все совпадает с тем, что делаем через predict. Множитель везде 1.96
+
 m_means <- emmeans(mod, specs = ~ mab)
 m_means <- as.data.frame(m_means)
 # Можно сразу всовывать в ggplot, но не забывать делать обратное преобразование.Для negnb - это exp()
@@ -114,13 +114,17 @@ fig1_count_U937_TGF_sum <- ggplot(m_means, aes(x = mab, y = emmean_resp)) +
         geom_col(fill = "gray", color = "black") + 
         geom_errorbar(aes(ymin = asymp.LCL_resp, ymax = asymp.UCL_resp), width = 0.2)+
         theme_bw()  +
-        theme(axis.text.x = element_text(angle = 30, hjust=1))+
-        ylab("Число клеток U-937")+
+        theme(axis.text.x = element_text(angle = 30, hjust=1, size=10),
+              axis.title.y = element_text(size=12),
+              plot.title = element_text(hjust=0.5, face="bold"))+
+        ylab("Число прикрепленных клеток")+
         xlab("")+
-        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("4C9+TGF-beta"), y=1200, yend=1200))+
-        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("4E4+TGF-beta"), y=1210, yend=1210))+
-        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("5H7+TGF-beta"), y=1220, yend=1220))+
-        geom_text(aes(x = "2C8+TGF-beta", y = 1230, label = "***"), size = 7)
+        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("4C9+TGF-beta"), y=1850, yend=1850))+
+        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("4E4+TGF-beta"), y=1900, yend=1900))+
+        geom_segment(aes(x=c("Ig1+TGF-beta"), xend=c("5H7+TGF-beta"), y=1960, yend=1960))+
+        geom_text(aes(x = "2C8+TGF-beta", y = 1990, label = "***"), size = 7)+
+        ylim(0,2000)+
+        ggtitle("U-937")
        
 
 #########################

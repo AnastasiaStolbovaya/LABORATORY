@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nfig1_4 <- cowplot::plot_grid(fig4_count_THP1  ,fig2_count_U937_sum, fig3_count_THP1_TGF, fig1_count_U937_TGF_sum, align = \"hv\", labels=c(\"а\",\"б\",\"в\",\"г\"), label_size = 12, hjust=0)\n\nggsave(file=\"Fig1-4.jpeg\", plot=fig1_4, width=20, height=20, dpi=600, units=\"cm\")\n",
+    "created" : 1540189150925.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2224404259",
+    "id" : "13640907",
+    "lastKnownWriteTime" : 1540193460,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/un_2.R",
+    "project_path" : "un_2.R",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

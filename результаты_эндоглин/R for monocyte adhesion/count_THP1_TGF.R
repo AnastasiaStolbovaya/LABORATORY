@@ -63,16 +63,16 @@ fig3_count_THP1_TGF<- ggplot(mod_THP1_TGF_means, aes(x = mab, y = emmean_resp)) 
         geom_col(fill = "gray", color = "black") + 
         geom_errorbar(aes(ymin = asymp.LCL_resp, ymax = asymp.UCL_resp), width = 0.2)+
         theme_bw()  +
-        theme(axis.text.x = element_text(angle = 30, hjust=1))+
-        ylab("число клеток THP-1")+
-        xlab("")
-        # geom_segment(aes(x=c("Ig1"), xend=c("4C9"), y=1200, yend=1200))+
-        # geom_segment(aes(x=c("Ig1"), xend=c("4E4"), y=1210, yend=1210))+
-        # geom_segment(aes(x=c("Ig1"), xend=c("5H7"), y=1220, yend=1220))+
-        # geom_text(aes(x = "2C8", y = 1230, label = "***"), size = 7)
+        theme(axis.text.x = element_text(angle = 30, hjust=1, size=10),
+              axis.title.y=element_text(size=12),
+              plot.title = element_text(hjust=0.5, face="bold"))+
+        ylab("Число прикрепленных клеток")+
+        xlab("")+
+        ggtitle("THP-1")
+        
 
 
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 
 

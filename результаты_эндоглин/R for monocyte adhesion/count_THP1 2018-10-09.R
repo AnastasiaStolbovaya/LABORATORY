@@ -4,6 +4,7 @@ library(multcomp)
 library(nlme)
 library(boot)
 library(lme4)
+library(emmeans)
 getwd()
 path <-"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/"
 setwd(path)
@@ -69,9 +70,13 @@ fig4_count_THP1 <- ggplot(M5_means, aes(mab, emmean_resp)) +
         geom_col(color = "black", fill = "grey") +
         geom_errorbar(width = 0.25, aes(ymin = asymp.LCL_resp, ymax =asymp.UCL_resp)) +
         theme_bw()+
-        theme(axis.text.x = element_text(angle=30, hjust=1))+
+        theme(axis.text.x = element_text(angle=30, hjust=1, size=10),
+              axis.title.y=element_text(size=12),
+              plot.title = element_text(hjust=0.5, face="bold"))+
         xlab("")+
-        ylab("Число клеток THP-1")
+        ylab("Число прикрепленных клеток")+
+        ylim(0,2000)+
+        ggtitle("THP-1")
 
 
 
