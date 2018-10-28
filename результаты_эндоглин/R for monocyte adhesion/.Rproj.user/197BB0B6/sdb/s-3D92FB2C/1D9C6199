@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Read files-reports after image analisys2\n\ngetwd()\npath <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/2018-10-04_co-culture_THP1_TGF\"\nsetwd(path)\ngetwd()\n\nread_my_csv <- function(f, sep){\n        data <- read.csv(file=f, sep=sep, dec=\",\", stringsAsFactors = F)\n        data$file <- f\n        data\n}\n\nfiles_cells <- list.files(\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/2018-10-04_co-culture_THP1_TGF/\", pattern = \"*.csv\", full.names = F)\n\n f1 <- lapply(files_cells, read_my_csv, sep=\";\")\n class(f1)\n lapply(f1, class)\n table <- do.call(plyr::rbind.fill, f1)\n class(table)\n table$date <- \"2018-10-04\"\n table$exp <- 1\n write.table(table, file=\"count_THP1_TGF_exp1.csv\", sep=\";\", row.names = F)\n ",
+    "created" : 1539243894269.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3570149014",
+    "id" : "1D9C6199",
+    "lastKnownWriteTime" : 1539244509,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/READ REPORTS.R",
+    "project_path" : "READ REPORTS.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

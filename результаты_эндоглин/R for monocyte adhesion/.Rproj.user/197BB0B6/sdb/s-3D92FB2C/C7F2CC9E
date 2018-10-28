@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(doBy)\nlibrary(ggplot2)\nlibrary(multcomp)\nlibrary(nlme)\nlibrary(cowplot)\n\ngetwd()\npath <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/\"\nsetwd(path)\n\n\n\n\ncount_U937 <-read.csv(file=\"count_U937.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\ncount_U937_exp2 <-read.csv(file=\"count_U937_exp2.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\n\ncount_U937$exp <- 1\ncount_U937_exp2$exp <-2\n\ncount_u937<- rbind(count_U937, count_U937_exp2)\n\n\ncount_u937 <- count_u937[, -c(2:10,12)]\n\n\ncount_U937$well <- stringr::str_split_fixed(count_U937$name, pattern=\"\\\\_\", n=2)[,1]\ncount_U937$n <- stringr::str_split_fixed(count_U937$name, pattern=\"\\\\_\", n=3)[,2]\n\nlength(count_U937$n)\nlength(count_U937$well)\n\ncount_2 <- summaryBy(left.circles ~ mab+well, data=count_U937, FUN=mean, keep.names = T)\n\n\nggplot(data=count_2, aes(x=mab, y=left.circles))+geom_point()\n\ncount_2$mab <- factor(count_2$mab) \n\nmod_1 <- glm(left.circles ~ mab, data=count_2, family=\"poisson\")\nmod <- glm.nb(left.circles ~ mab, data=count_2)\nsummary(mod)\n\ntest <- (glht(model=mod, linfct= mcp(mab = \"Tukey\")))\nsummary(test)\n\n\n\nmydata_count_2 <- data.frame(mab = levels(count_2$mab))\n\nmydata_count_2$predict <- predict(mod, newdata = mydata_count_2, re.form = NA, type = \"response\", se.fit=T)$fit\n\nmydata_count_2$se <- predict(mod, newdata = mydata_count_2, re.form = NA, type = \"response\", se.fit=T)$se\n\nmydata_count_2$mab <- factor(mydata_count_2$mab, levels=c( \"control\", \"HP3A7\" , \"2C8\" ,   \"4C9\" , \"4E4\" , \"5H7\"))\nlevels(mydata_count_2$mab) <- c(\"К\", \"IgG1\", \"2C8\" ,   \"4C9\" , \"4E4\" , \"5H7\")\n\nfig2 <- ggplot(mydata_count_2, aes(mab, predict)) +\n        geom_bar(stat = \"identity\", width = 0.45, color = \"black\", fill = \"grey\") +\n        geom_errorbar(width = 0.25, aes(ymin = predict-1.96*se, ymax =predict+1.96*se)) +\n        theme_bw()+\n        ylim(0,70)+\n        xlab(\"\")+\n        ylab(\"Число клеток U937\")\n\nggsave(\"fig2_count_U937.jpeg\", fig2, width=10, height=12, dpi=600, units=\"cm\")\n\n\n\n\nfig3<- gridExtra::grid.arrange(fig1, fig2, nrow=1)\n\nggsave(\"fig3.jpeg\", fig3, width=15, height=12, dpi=600, units=\"cm\")\n\n",
+    "created" : 1538133583016.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3501001355",
+    "id" : "C7F2CC9E",
+    "lastKnownWriteTime" : 1539244564,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/count_U937 2018-10-10.R",
+    "project_path" : "count_U937 2018-10-10.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(doBy)\nlibrary(ggplot2)\nlibrary(multcomp)\nlibrary(nlme)\nlibrary(boot)\nlibrary(cowplot)\n\ngetwd()\npath <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/\"\n\nread_my_csv <- function(f, sep){\n        data <- read.csv(file=f, sep=sep, dec=\",\", stringsAsFactors = F)\n        data$file <- f\n        data\n}\nfiles_cells_4 <- list.files(\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/2018-10-04_co-culture_U-937_TGF\", pattern = \"*.csv\", full.names = F)\npath <- \"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/2018-10-04_co-culture_U-937_TGF\"\nsetwd(path)\nf4 <- lapply(files_cells_4, read_my_csv, sep=\";\")\nclass(f4)\nlapply(f4, class)\ncount_U937_TGF_exp1 <- do.call(plyr::rbind.fill, f4)\nclass(count_U937_TGF_exp1)\nwrite.table(count_U937_TGF_exp1, file=\"count_U937_TGF_exp1.csv\", sep=\";\", row.names = F)\n\n# # # # # # # # # # # # # # # # # # # # # # \n\npath <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/\"\nsetwd(path)\ncount_U937_TGF <- read.csv(\"count_U937_TGF_exp1.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\n\ncount_U937_TGF <- count_U937_TGF[, -c(2:10,12)]\ncount_U937_TGF$mab<- stringr::str_split_fixed(count_U937_TGF$file, pattern=\"\\\\_\", n=2)[,2]\ncount_U937_TGF$mab<- stringr::str_split_fixed(count_U937_TGF$mab, pattern=\"\\\\.\", n=2)[,1]\ncount_U937_TGF[109:126,4] <- \"TGFb\"\n\ncount_U937_TGF$well <- stringr::str_split_fixed(count_U937_TGF$name, pattern=\"\\\\_\", n=2)[,1]\ncount_U937_TGF$n <- stringr::str_split_fixed(count_U937_TGF$name, pattern=\"\\\\_\", n=2)[,2]\n\nlength(count_U937_TGF$n)\nlength(count_U937_TGF$well)\n\ncount_U937_TGF_sum <- summaryBy(left.circles ~ mab+well, data=count_U937_TGF, FUN=mean, keep.names = T)\n\n\nggplot(data=count_U937_TGF_sum, aes(x=mab, y=left.circles))+geom_point()\n\ncount_U937_TGF_sum$mab <- factor(count_U937_TGF_sum$mab) \ncount_U937_TGF_sum$mab <- relevel(count_U937_TGF_sum$mab, ref=\"3A7+TGFb\") \n\nmod_1 <- glm(left.circles ~ mab, data=count_U937_TGF_sum, family=\"poisson\")\nmod <- glm.nb(left.circles ~ mab, data=count_U937_TGF_sum)\nsummary(mod)\n\ntest <- (glht(model=mod, linfct= mcp(mab = \"Tukey\")))\nsummary(test)\n\ntest_Dunnet <- (glht(model=mod, linfct= mcp(mab = \"Dunnet\")))\nsummary(test_Dunnet)\n\n\nmydata_ <- data.frame(mab = levels(count_U937_TGF_sum$mab))\n\nmydata_$predict <- predict(mod, newdata = mydata_, re.form = NA, type = \"response\", se.fit=T)$fit\n\nmydata_$se <- predict(mod, newdata = mydata_, re.form = NA, type = \"response\", se.fit=T)$se\n\n\nmydata_$mab <- factor(mydata_$mab, levels=c( \"control\", \"TGFb\", \"3A7+TGFb\" ,  \"2C8+TGFb\" ,   \"4C9+TGFb\" , \"4E4+TGFb\" , \"5H7+TGFb\"))\nlevels(mydata_$mab) <- c( \"К\", \"TGFb\", \"Ig1+TGFb\" , \"2C8+TGFb\" ,   \"4C9+TGFb\" , \"4E4+TGFb\" , \"5H7+TGFb\")\n\nis.numeric(mydata_$predict)\n\nfig4 <- ggplot(mydata_, aes(mab, predict)) +\n        geom_bar(stat = \"identity\", width = 0.45, color = \"black\", fill = \"grey\") +\n        geom_errorbar(width = 0.25, aes(ymin = predict-1.96*se, ymax =predict+1.96*se)) +\n        # scale_y_continuous(breaks = c(\"0\", \"20\", \"40\", \"60\", \"80\",\"100\", \"120\", \"140\", \"160\",\"180\", \"200\"))+\n        xlab(\"\")+\n        ylab(\"Число клеток U-937\")+\n        theme_bw()+\n        theme(axis.text.x = element_text(angle=30, hjust=1))+\n        ylim(0,150)\n\n\n\nggsave(\"fig4_count_U937_TGF.jpeg\", fig4, width=10, height=12, dpi=600, units=\"cm\")\n\n\nfig5<- gridExtra::grid.arrange(fig3, fig4, nrow=1, heights=2:1)\n\nggsave(\"fig5_THP1_U937_TGF.jpeg\", fig5, width=15, height=12, dpi=600, units=\"cm\")\n",
+    "created" : 1539075268535.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3944084",
+    "id" : "664FDC63",
+    "lastKnownWriteTime" : 1539168601,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/count_U937_TGF.R",
+    "project_path" : "count_U937_TGF.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

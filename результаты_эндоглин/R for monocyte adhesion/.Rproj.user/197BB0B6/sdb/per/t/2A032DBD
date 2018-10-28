@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(doBy)\nlibrary(ggplot2)\nlibrary(multcomp)\nlibrary(nlme)\nlibrary(boot)\nlibrary(lme4)\ngetwd()\npath <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/\"\nsetwd(path)\n\n\n# # # # # # # # # # # # # \ncount_THP1_exp1 <-read.csv(file=\"count_THP1_exp1.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\ncount_THP1_exp2 <-read.csv(file=\"count_THP1_exp2.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\n\n\n\ncount_thp1 <- rbind(count_THP1_exp1, count_THP1_exp2)\n\ncount_thp1 <- count_thp1[, -c(2:10,12)]\ncount_thp1$mab<- stringr::str_split_fixed(count_thp1$file, pattern=\"\\\\_\", n=2)[,2]\ncount_thp1$mab<- stringr::str_split_fixed(count_thp1$mab, pattern=\"\\\\.\", n=2)[,1]\n\ncount_thp1$well <- stringr::str_split_fixed(count_thp1$name, pattern=\"\\\\_\", n=2)[,1]\ncount_thp1$n <- stringr::str_split_fixed(count_thp1$name, pattern=\"\\\\_\", n=3)[,2]\n\nlength(count_thp1$n)\nlength(count_thp1$well)\n\ncount_thp1_sum <- summaryBy(left.circles ~exp+well+mab, data=count_thp1, FUN=mean, keep.names = T)\n\n\n\nggplot(data=count_thp1_sum, aes(x=mab, y=left.circles, color=factor(exp)))+geom_point()\n\ncount_thp1_sum$mab <- factor(count_thp1_sum$mab) \ncount_thp1_sum$exp <- factor(count_thp1_sum$exp) \ncount_thp1_sum$mab<- relevel(count_thp1_sum$mab, ref=\"3A7\") \ncount_thp1_sum$left.circles <-round(count_thp1_sum$left.circles)\n\nM1 <- glm(left.circles ~ mab*exp, data=count_thp1_sum, family=\"poisson\")\nM2 <- glmer(left.circles ~ mab+(1|exp), data=count_thp1_sum, family=\"poisson\")\nM3 <- glm.nb(left.circles ~ mab*exp, data=count_thp1_sum)\nM4 <- glm.nb(left.circles ~ mab+exp, data=count_thp1_sum)\nM5 <- glmer.nb(left.circles ~ mab+(1|exp), data=count_thp1_sum)\n\nsummary(M5)\n\ntest <- (glht(model=M5, linfct= mcp(mab = \"Tukey\")))\nsummary(test)\n\n\n\nmydata_M5 <- expand.grid(mab = levels(count_thp1_sum$mab))\n \nmydata_M5$predict <- predict(M5, newdata = mydata_M5, re.form=NA)\n\nX <- model.matrix(~ mab, data =count_thp1_sum)\n \nmydata_M5$SE <- sqrt(diag(X %*% vcov(M5) %*% t(X)))\n\n# mydata_count$se <- predict(M5, newdata = mydata_count, re.form = NA, type = \"response\", se.fit=T)$se\n\n\n\n\n\n\nmydata_M2$mab <- factor(mydata_M2$mab, levels=c( \"control\", \"3A7\" , \"2C8\" ,   \"4C9\" , \"4E4\" , \"5H7\"))\nlevels(mydata_M2$mab) <- c(\"К\", \"IgG1\", \"2C8\" ,   \"4C9\" , \"4E4\" , \"5H7\")\n\n\nfig6 <- ggplot(mydata_M2, aes(mab, predict)) +\n        geom_bar(stat = \"identity\", width = 0.45, color = \"black\", fill = \"grey\") +\n        geom_errorbar(width = 0.25, aes(ymin = predict-1.96*se, ymax =predict+1.96*se)) +\n        # geom_segment(aes(x=c(\"IgG1\"), xend=c(\"5H7\"), y=70, yend=70)) +\n        # geom_text(aes(x = \"2C8\", y = 71, label = \"**\"), size = 7) +\n        theme_bw()+\n        # scale_y_continuous(breaks = c(\"0\", \"10\", \"20\", \"30\", \"40\", \"50\", \"60\"))+\n        xlab(\"\")+\n        ylab(\"Число клеток THP-1\")\n\nggsave(\"fig1_count_THP1.jpeg\", fig1, width=10, height=12, dpi=600, units=\"cm\")\n\n\n\n\n\n\n\n\n\n",
+    "created" : 1538032645185.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3653522762",
+    "id" : "2A032DBD",
+    "lastKnownWriteTime" : 1539775420,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/count_THP1 2018-10-09.R",
+    "project_path" : "count_THP1 2018-10-09.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

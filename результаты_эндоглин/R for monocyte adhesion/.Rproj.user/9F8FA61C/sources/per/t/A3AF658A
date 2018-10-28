@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540143652345.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "320550392",
+    "id" : "A3AF658A",
+    "lastKnownWriteTime" : 1540185912,
+    "last_content_update" : 1540185912875,
+    "path" : "E:/Лаборатория гибридомной технологии/результаты_эндоглин/R for monocyte adhesion/un_1.R",
+    "project_path" : "un_1.R",
+    "properties" : {
+        "cursorPosition" : "16,77",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

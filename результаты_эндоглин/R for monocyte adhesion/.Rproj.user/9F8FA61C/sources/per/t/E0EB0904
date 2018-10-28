@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540153820254.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4026930532",
+    "id" : "E0EB0904",
+    "lastKnownWriteTime" : 1540184929,
+    "last_content_update" : 1540184929328,
+    "path" : "E:/Лаборатория гибридомной технологии/результаты_эндоглин/R for monocyte adhesion/count_THP1_TGF.R",
+    "project_path" : "count_THP1_TGF.R",
+    "properties" : {
+        "cursorPosition" : "68,8",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

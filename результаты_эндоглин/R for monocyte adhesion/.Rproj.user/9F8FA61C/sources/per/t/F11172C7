@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539962100837.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "817804945",
+    "id" : "F11172C7",
+    "lastKnownWriteTime" : 1540184929,
+    "last_content_update" : 1540184929202,
+    "path" : "E:/Лаборатория гибридомной технологии/результаты_эндоглин/R for monocyte adhesion/count_U937_TGF_2018-10-19.R",
+    "project_path" : "count_U937_TGF_2018-10-19.R",
+    "properties" : {
+        "cursorPosition" : "117,32",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

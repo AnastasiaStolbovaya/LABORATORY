@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538338991471.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3650140569",
+    "id" : "875446",
+    "lastKnownWriteTime" : 1478091112,
+    "last_content_update" : 1478091112,
+    "path" : "E:/Лаборатория гибридомной технологии/результаты_эндоглин/R for flow cytometry/flow.functions2.R",
+    "project_path" : "flow.functions2.R",
+    "properties" : {
+        "cursorPosition" : "11,9",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

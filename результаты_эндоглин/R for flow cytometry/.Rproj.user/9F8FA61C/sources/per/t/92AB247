@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1538381250767.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "92AB247",
+    "lastKnownWriteTime" : -5057332577790018352,
+    "last_content_update" : 1538381250767,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "75CD4682",
+        "caption" : "guide_am",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=guide_am&cache_key=75CD4682",
+        "displayedObservations" : 84,
+        "environment" : "",
+        "object" : "guide_am",
+        "preview" : 0,
+        "totalObservations" : 84,
+        "variables" : 5
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,5 @@
+"sample.name";"sample.date";"dilution";"OD";"conc";"signif.conc";"reliable"
+"EA supernatant";"18.04.18";2;1,345;15,8;15,8;FALSE
+"EA supernatant";"18.04.18";2;1,251;14,5;14,5;FALSE
+"EA super after incubation with sepharose";"18.04.18";2;0,867;9,6;9,6;FALSE
+"EA super after incubation with sepharose";"18.04.18";2;0,951;10,7;10,7;FALSE

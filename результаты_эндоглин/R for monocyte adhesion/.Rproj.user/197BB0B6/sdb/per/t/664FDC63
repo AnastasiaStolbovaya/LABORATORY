@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(doBy)\nlibrary(ggplot2)\nlibrary(multcomp)\nlibrary(nlme)\nlibrary(boot)\nlibrary(cowplot)\nlibrary(lme4)\n\ngetwd()\n# path <-\"D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/\"\n# setwd(path)\ncount_U937_TGF_exp1 <- read.csv(\"count_U937_TGF_exp1.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\ncount_U937_TGF_exp2 <- read.csv(\"count_U937_TGF_exp2.csv\", sep=\";\", dec=\",\", stringsAsFactors = F)\n\ncount_U937_TGF <- rbind(count_U937_TGF_exp1, count_U937_TGF_exp2)\n\n\ncount_U937_TGF <- count_U937_TGF[, -c(2:10,12)]\ncount_U937_TGF$mab<- stringr::str_split_fixed(count_U937_TGF$file, pattern=\"\\\\_\", n=2)[,2]\ncount_U937_TGF$mab<- stringr::str_split_fixed(count_U937_TGF$mab, pattern=\"\\\\.\", n=2)[,1]\ncount_U937_TGF$well <- stringr::str_split_fixed(count_U937_TGF$name, pattern=\"\\\\_\", n=2)[,1]\ncount_U937_TGF$n <- stringr::str_split_fixed(count_U937_TGF$name, pattern=\"\\\\_\", n=2)[,2]\n\nlength(count_U937_TGF$n)\nlength(count_U937_TGF$well)\n\ncount_U937_TGF_sum <- summaryBy(left.circles ~ mab+well+exp+date, data=count_U937_TGF, FUN=mean, keep.names = T)\n\n\nggplot(data=count_U937_TGF_sum, aes(x=mab, y=left.circles, color=factor(exp)))+geom_point()\n\ncount_U937_TGF_sum$mab <- factor(count_U937_TGF_sum$mab) \ncount_U937_TGF_sum$mab <- relevel(count_U937_TGF_sum$mab, ref=\"3A7+TGF-beta\") \n\nmod_3 <- glm(left.circles ~ mab, data=count_U937_TGF_sum, family=\"poisson\")\n\nmod <- glm.nb(left.circles ~ mab+exp, data=count_U937_TGF_sum)\nmod_1 <- glm.nb(left.circles ~ mab*exp, data=count_U937_TGF_sum)\nmod_2 <- glmer.nb(left.circles ~ mab+(1|exp), data=count_U937_TGF_sum)\nsummary(mod_2)\nAIC(mod,mod_1 )\n\ndrop1(mod_1, test=\"Chi\")\n\n\ntest <- (glht(model=mod_2, linfct= mcp(mab = \"Tukey\")))\nsummary(test)\n\n# test_Dunnet <- (glht(model=mod, linfct= mcp(mab = \"Dunnet\")))\n# summary(test_Dunnet)\n\n\nmydata_ <- data.frame(mab = levels(count_U937_TGF_sum$mab))\n\nmydata_$predict <- predict(mod_2, newdata = mydata_, re.form = NA, type=\"response\")\n\n# mydata_$se <- predict(mod, newdata = mydata_, re.form = NA, type = \"response\", se.fit=T)$se\n\nX <- model.matrix(~ mab, data =count_U937_TGF_sum)\n\nmydata_$se <- sqrt(diag(vcov(mod_2)))\n# mydata_$SE <- sqrt(diag(X %*% vcov(mod_2) %*% t(X)))\n\n\nmydata_$mab <- factor(mydata_$mab, levels=c( \"control\", \"TGF-beta\", \"3A7+TGF-beta\" ,  \"2C8+TGF-beta\" ,   \"4C9+TGF-beta\" , \"4E4+TGF-beta\" , \"5H7+TGF-beta\"))\nlevels(mydata_$mab) <- c( \"К\", \"TGF-beta\", \"Ig1+TGF-beta\" , \"2C8+TGF-beta\" ,   \"4C9+TGF-beta\" , \"4E4+TGF-beta\" , \"5H7+TGF-beta\")\n\nis.numeric(mydata_$predict)\n\nfig4 <- ggplot(mydata_, aes(mab, predict)) +\n        geom_bar(stat = \"identity\", width = 0.45, color = \"black\", fill = \"grey\") +\n        # geom_errorbar(width = 0.25, aes(ymin = predict-1.96*se, ymax =predict+1.96*se)) +\n        # scale_y_continuous(breaks = c(\"0\", \"20\", \"40\", \"60\", \"80\",\"100\", \"120\", \"140\", \"160\",\"180\", \"200\"))+\n        xlab(\"\")+\n        ylab(\"Число клеток U-937\")+\n        theme_bw()+\n        theme(axis.text.x = element_text(angle=30, hjust=1))+\n        ylim(0,150)\n\n\n\nggsave(\"fig4_count_U937_TGF.jpeg\", fig4, width=10, height=12, dpi=600, units=\"cm\")\n\n\nfig5<- gridExtra::grid.arrange(fig3, fig4, nrow=1, heights=2:1)\n\nggsave(\"fig5_THP1_U937_TGF.jpeg\", fig5, width=15, height=12, dpi=600, units=\"cm\")\n",
+    "created" : 1539075268535.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "533230154",
+    "id" : "664FDC63",
+    "lastKnownWriteTime" : 1539861560,
+    "last_content_update" : -2147483648,
+    "path" : "D:/Анастасия Столбовая/результаты_эндоглин/R for monocyte adhesion/count_U937_TGF.R",
+    "project_path" : "count_U937_TGF.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,25 @@
+Cell,treatment,Marker,Isotype,Data,File,String
+EA.hy926,control,CD29,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_PE isotype_001.fcs,1
+EA.hy926,control,CD54,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_PE isotype_001.fcs,2
+EA.hy926,control,CD62E,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_PE isotype_001.fcs,3
+EA.hy926,control,CD105,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_PE isotype_001.fcs,4
+EA.hy926,control,CD29,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_CD29_002.fcs,5
+EA.hy926,control,CD54,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_CD54_003.fcs,6
+EA.hy926,control,CD62E,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_CD62E_004.fcs,7
+EA.hy926,control,CD105,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 control_CD105_005.fcs,8
+EA.hy926,tgfb1,CD29,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_PE isotype_006.fcs,9
+EA.hy926,tgfb1,CD54,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_PE isotype_006.fcs,10
+EA.hy926,tgfb1,CD62E,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_PE isotype_006.fcs,11
+EA.hy926,tgfb1,CD105,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_PE isotype_006.fcs,12
+EA.hy926,tgfb1,CD29,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_CD29_007.fcs,13
+EA.hy926,tgfb1,CD54,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_CD54_008.fcs,14
+EA.hy926,tgfb1,CD62E,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_CD62E_009.fcs,15
+EA.hy926,tgfb1,CD105,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb_CD105_010.fcs,16
+EA.hy926,tgfb1_bsa,CD29,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_PE isotype_011.fcs,17
+EA.hy926,tgfb1_bsa,CD54,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_PE isotype_011.fcs,18
+EA.hy926,tgfb1_bsa,CD62E,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_PE isotype_011.fcs,19
+EA.hy926,tgfb1_bsa,CD105,TRUE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_PE isotype_011.fcs,20
+EA.hy926,tgfb1_bsa,CD29,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_CD29_012.fcs,21
+EA.hy926,tgfb1_bsa,CD54,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_CD54_013.fcs,22
+EA.hy926,tgfb1_bsa,CD62E,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_CD62E_014.fcs,23
+EA.hy926,tgfb1_bsa,CD105,FALSE,2018-04-19,D:/Anastsya/ПЕСОЧНОЕ/результаты_эндоглин/R for flow cytometry/2018-04-19_fcs/EA_hy926 TGFb BSA_CD105_015.fcs,24

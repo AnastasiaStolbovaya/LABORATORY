@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "overdisp_fun <- function(model) {\n        ## number of variance parameters in \n        ##   an n-by-n variance-covariance matrix\n        vpars <- function(m) {\n                nrow(m)*(nrow(m)+1)/2\n        }\n        model.df <- sum(sapply(VarCorr(model),vpars))+length(fixef(model))\n        rdf <- nrow(model.frame(model))-model.df\n        rp <- residuals(model,type=\"pearson\")\n        Pearson.chisq <- sum(rp^2)\n        prat <- Pearson.chisq/rdf\n        pval <- pchisq(Pearson.chisq, df=rdf, lower.tail=FALSE)\n        c(chisq=Pearson.chisq,ratio=prat,rdf=rdf,p=pval)\n}\n\noverdisp_fun(M1)",
+    "created" : 1538120630650.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1402500143",
+    "id" : "D1C36656",
+    "lastKnownWriteTime" : 6,
+    "last_content_update" : -2147483648,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
